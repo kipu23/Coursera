@@ -17,15 +17,23 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+    
+    n = size(X,2); % number of training examples
+    
+    thetax = zeros(m,n); % helper matrix for theta*feature
+    
+    for featureNo = 1:n
+      thetax(:,featureNo) = thetax(:,featureNo) + theta(featureNo)*X(:,featureNo);
+    end
+    
+    h = sum(thetax,2); % hypotesis for multiple variables
+    
 
-
-
-
-
-
-
-
-
+    for featureNo = 1:n % update all thetas
+      
+      theta(featureNo,1) = theta(featureNo,1) - alpha * (1/m) * sum((h-y) .* X(:,featureNo));
+      
+    end
 
     % ============================================================
 
